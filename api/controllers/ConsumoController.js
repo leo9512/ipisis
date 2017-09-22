@@ -20,28 +20,18 @@
 module.exports = {
 	index: function(req, res) {
 	var OrgSistemasWebServiceClient = java.import("co.edu.udea.wsClient.OrgSistemasWebServiceClient");
-        var clientWS = new OrgSistemasWebServiceClient(true);
-	console.log(clientWS);
-	function consultarFacultad(codigo){
-		//"452624219667108910919947"
-		
+  var clientWS = new OrgSistemasWebServiceClient(true);
+
+
+function consultarFacultad(codigo){
+    var listaFacu = null;
 		clientWS.addParamSync("facultad",codigo);
-		console.log("--------------------------aca-----------------", clientWS, codigo);
-		var listaFacu = null;
 		listaFacu = clientWS.obtenerStringSync("consultafacultadesmares","6aaa5e631067cdda423396987f54f9df96625150");
-		console.log(listaFacu);
 		return listaFacu;
 	}
 	var user = consultarFacultad("");
 	res.view({
     		'usuario': user
     	});
-           //var fc="";
-           //clientWS.addParamSync("facultad", "");
-           //console.log("El clienteWs ---> ",a);
-           //var user = clientWS.obtenerStringSync("consultafacultadesmares", "6aaa5e631067cdda423396987f54f9df96625150");
-	   //var user= 'Maria Isabel';
-	   //console.log('USER ---> ',user);
-		
   }
 };
